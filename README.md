@@ -59,3 +59,159 @@ If a feature increases cognitive load, it does not ship.
 
 The entire system revolves around a simple loop:
 
+dump → confirm → now → done
+
+
+### Dump
+You unload unstructured thoughts — no formatting required.
+
+### Confirm
+Mitra suggests atomic commitments.
+You explicitly confirm or dismiss each one.
+
+### Now
+Mitra surfaces **exactly one** stabilizing action based on:
+- who it involves
+- type of work
+- mental energy required
+
+### Done
+You explicitly close the loop.
+
+Nothing happens silently.
+
+---
+
+## Domain concepts
+
+### Commitment
+An atomic obligation — something that, if not done, you would later think:
+
+> “I still owe this.”
+
+### Lifecycle
+unconfirmed → open → done | dismissed
+
+
+### Work streams
+- `planning`
+- `delivery`
+- `ops`
+
+### Energy levels
+- `light`
+- `medium`
+- `heavy`
+
+Energy is respected, never optimized against.
+
+---
+
+## Architecture overview
+
+Mitra is a monorepo built on the Cloudflare stack.
+
+apps/
+api/ # Cloudflare Workers (Hono)
+web/ # Minimal single-page UI
+packages/
+types/ # Shared domain types (optional)
+
+
+### Backend
+- Cloudflare Workers
+- Hono
+- Cloudflare D1 (SQLite)
+- Drizzle ORM
+
+### Frontend
+- Minimal single-page UI
+- No routing
+- No dashboards
+- One actionable item visible at a time
+
+### AI (Gemini)
+- Used only for language → structure decomposition
+- Never prioritizes, orders, or confirms work
+- Fully optional (system works without it)
+
+---
+
+## API endpoints
+
+### `POST /dump`
+Accepts unstructured text and returns **unconfirmed** commitments.
+
+### `POST /confirm`
+Explicitly accepts or dismisses a suggested commitment.
+
+### `GET /now`
+Returns **exactly one** actionable commitment.
+
+### `POST /done`
+Closes an open commitment.
+
+All endpoints are deterministic and side-effect safe.
+
+---
+
+## What Mitra intentionally does NOT do
+
+Mitra avoids:
+- task lists
+- priorities
+- reminders
+- notifications
+- dashboards
+- analytics
+- gamification
+- urgency signaling
+
+Those features increase pressure.  
+Mitra is designed to reduce it.
+
+---
+
+## Who this is for
+
+- Tech leads, EMs, founders
+- People with heavy context switching
+- Neurodivergent thinkers
+- Anyone who wants **support**, not management
+
+Mitra is built **for personal use first**.
+
+---
+
+## Project status
+
+The core loop is complete and intentionally small:
+
+- dump
+- confirm
+- now
+- done
+
+Future work, if any, will focus on:
+- trust
+- calmness
+- clarity
+
+Not scale.
+
+---
+
+## Philosophy
+
+> Thinking, deciding, and acting are different things.  
+> Most software collapses them.  
+> Mitra does not.
+
+---
+
+## License
+
+Choose deliberately.
+
+This is personal infrastructure.
+MIT or Apache-2.0 are reasonable defaults.
