@@ -15,23 +15,25 @@ dump.post('/', async (c) => {
     }
 
     // 1. Split and Classify
-    const suggestions = await splitAndClassify(body.text);
+    const suggestions = await splitAndClassify(body.text, c.env.GEMINI_API_KEY);
 
     // 2. Persist as 'unconfirmed'
     const db = drizzle(c.env.DB, { schema });
 
     if (suggestions.length > 0) {
-        await db.insert(commitments).values(
+        const result = await db.insert(commitments).values(
             suggestions.map(s => ({
                 title: s.description,
                 workStream: s.workStream,
                 energyLevel: s.energyLevel,
                 status: 'unconfirmed' as const,
             }))
-        );
+        ).returning();
+
+        return c.json({ suggestions: result });
     }
 
-    return c.json({ suggestions });
+    return c.json({ suggestions: [] });
 });
 
 export default dump;

@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:studio": "drizzle-kit studio --config drizzle.config.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.1",
@@ -13,6 +14,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260214.0",
+    "better-sqlite3": "^12.6.2",
     "drizzle-kit": "^0.31.9",
     "wrangler": "^4.4.0"
   }

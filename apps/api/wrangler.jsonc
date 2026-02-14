@@ -3,36 +3,12 @@
   "name": "helm-planner",
   "main": "src/index.ts",
   "compatibility_date": "2026-02-14",
-  // "compatibility_flags": [
-  //   "nodejs_compat"
-  // ],
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "helm-planner-db",
-      "database_id": "xxxx"
+      "database_id": "301b8104-e31e-46d5-ae5e-377e6b2e20bf",
+      "migrations_dir": "drizzle"
     }
-  ],
-  // "ai": {
-  //   "binding": "AI"
-  // },
-  // "observability": {
-  //   "enabled": true,
-  //   "head_sampling_rate": 1
-  // }
+  ]
 }
