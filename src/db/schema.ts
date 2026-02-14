@@ -20,6 +20,7 @@ export type ConversationSource = (typeof conversationSourceEnum)[number];
 export const people = sqliteTable('people', {
     id: text('id').primaryKey().$defaultFn(() => nanoid()),
     name: text('name').notNull(),
+    relationship: text('relationship'), // 'cofounder', 'teammate', etc.
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
 });
